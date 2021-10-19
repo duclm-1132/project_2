@@ -1,27 +1,13 @@
 <template>
-  <div class="home-page">
-		<TheNavbar  />
-		<div>
-			<TheHeader  />
-			<TheContent  />
-		</div>
-	</div>
+  <SignIn />
 </template>
 
 <script>
-import TheHeader from '../components/TheHeader.vue'
-import TheNavbar from "../components/TheNavbar.vue";
-import TheContent from "../components/TheContent.vue";
+import SignIn from './SignIn.vue'
+
 export default {
   components:{
-    TheHeader,
-    TheNavbar,
-		TheContent
+    SignIn
   }
 }
 </script>
-<style>
-.home-page {
-	display: flex;
-}
-</style>

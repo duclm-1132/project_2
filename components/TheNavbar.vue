@@ -136,26 +136,7 @@
         </div>
         <div class="menu-item-title" :class="{ hide: collapse }">Ngân sách</div>
       </div>
-      <div
-        class="menu-item"
-        :class="{ active: selectedItem == 13, 'witdh-auto': collapse }"
-        @click="selectItem(13)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-report" title="Báo cáo"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Báo cáo</div>
-      </div>
-      <div
-        class="menu-item"
-        :class="{ active: selectedItem == 14, 'witdh-auto': collapse }"
-        @click="selectItem(14)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-finance" title="Báo cáo tài chính"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Báo cáo tài chính</div>
-      </div>
+      
     </div>
   </div>
 </template>
@@ -187,16 +168,6 @@ export default {
 		 * ModifiedBy: DucLm (23/09/2021)
 		 */
 		collapseMenu() {
-			/**
-            if (this.collapse) {
-                this.collapse = false;
-                this.$emit("collapse", this.collapse);
-            } else {
-                this.collapse = true;
-                this.$emit("collapse", this.collapse);
-            }
-            */
-
 			this.collapse = !this.collapse
 			this.$emit('collapse', this.collapse)
 		},

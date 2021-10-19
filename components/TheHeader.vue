@@ -45,24 +45,22 @@
 
 export default {
 	props: {
-		// user: { type: Object },
-
 		colapseClick: { type: Boolean, default: false }
 	},
 	data() {
 		return {
             user:{
-                "firstName": "Lee",
-                "lastName": "Nguyen",
-                "companyName": "Dược Hà Nội",
-                "username": "minhduc1234",
-                "password": "12345678",
-                "id": 6
+                
             },
 			hideDropdown: { type: Boolean, default: true }
 		}
 	},
-	created() {},
+	created() {
+		this.user = this.$cookies.get("user");
+	},
+	destroyed() {
+		this.btnSignOutClick()
+	},
 	methods: {
 		/**
 		 * click sign-out
@@ -71,7 +69,9 @@ export default {
 		 * Detail Modified: chuyển hướng thẳng về trang login chứ không cần xóa cookies
 		 */
 		btnSignOutClick() {
-			// router.push({ path: "/" });
+			this.$cookies.remove('user')
+			this.user = {}
+            this.$router.push({path:"/"})
 		},
 		/**
 		 * show dropdown
