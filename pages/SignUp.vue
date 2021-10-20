@@ -3,43 +3,43 @@
     <div class="container">
       <div class="container__item">
         <div class="container--header">
-          <div class="header-text">Đăng ký tài khoản</div>
+          <div class="header-text">{{$t('nav.signIn')}} VMO</div>
           <div class="back-sign-in">
             <p>
-              Tôi đã có tài khoản?
-              <router-link to="/" class="color-text-green">Đăng nhập</router-link>
+              {{$t('nav.formRegisterSubTitle')}}
+              <nuxt-link :to="localePath('/')" class="color-text-green">{{$t('nav.login')}}</nuxt-link>
             </p>
           </div>
         </div>
         <div class="container-form">
           <div class="form-name">
             <div class="form-item firstName">
-              <label for="firstName">Họ và tên</label>
+              <label for="firstName">{{$t('account.firstName')}}</label>
               <input
                 id="firstName"
                 ref="firstName"
                 v-model="user.firstName"
                 type="text"
                 class="input"
-                placeholder="Nhập họ và tên đệm"
+                :placeholder="$t('placeholder.enterFirstName')"
               />
               <div class="text-error" :class="{ 'text-muted': textMuteFirstName }">{{ msg }}</div>
             </div>
             <div class="form-item lastName">
-              <label for="lastName">Tên</label>
+              <label for="lastName">{{$t('account.lastName')}}</label>
               <input
                 id="lastName"
                 ref="lastName"
                 v-model="user.lastName"
                 type="text"
                 class="input"
-                placeholder="Nhập tên"
+                :placeholder="$t('placeholder.enterLastName')"
               />
               <div class="text-error" :class="{ 'text-muted': textMuteLastName }">{{ msg }}</div>
             </div>
           </div>
           <div class="form-item">
-            <label for="companyName">Tên công ty</label>
+            <label for="companyName">{{$t('account.companyName')}}</label>
             <input
               id="companyName"
               ref="companyName"
@@ -47,12 +47,12 @@
               type="text"
               class="input"
               name
-              placeholder="Nhập tên công ty"
+              :placeholder="$t('placeholder.enterCompanyName')"
             />
             <div class="text-error" :class="{ 'text-muted': textMuteCompanyName }">{{ msg }}</div>
           </div>
           <div class="form-item">
-            <label for="username">Tên đăng nhập/Email</label>
+            <label for="username">{{$t('account.username')+'\/'+$t('account.email')}}</label>
             <input
               id="username"
               ref="username"
@@ -60,12 +60,12 @@
               type="text"
               class="input"
               name
-              placeholder="Nhập tên đăng nhập/email"
+              :placeholder="$t('placeholder.enterUserName')"
             />
             <div class="text-error" :class="{ 'text-muted': textMuteUsername }">{{ msg }}</div>
           </div>
           <div class="form-item">
-            <label for="password">Mật khẩu</label>
+            <label for="password">{{$t('account.password')}}</label>
             <input
               id="password"
               ref="password"
@@ -73,21 +73,26 @@
               type="password"
               minlength="8"
               class="input"
-              placeholder="Nhập mật khẩu"
+              :placeholder="$t('placeholder.enterPassword')"
             />
             <div class="text-error" :class="{ 'text-muted': textMutePassword }">{{ msg }}</div>
           </div>
           <div class="form-item">
-            <input type="submit" class="input btn-submit" value="Đăng ký" @click="btnClickSignUp()" />
+            <input type="submit" class="input btn-submit" :value="$t('nav.signIn')" @click="btnClickSignUp()" />
           </div>
         </div>
       </div>
+      <TheDropdownLanguage />
     </div>
   </div>
 </template>
 <script>
+import TheDropdownLanguage from '../components/TheDropdownLanguage.vue'
 export default {
 	name: 'SignUp',
+	comments: {
+		TheDropdownLanguage
+	},
 	data() {
 		return {
 			msg: '',
@@ -164,7 +169,7 @@ export default {
 }
 </script>
 <style>
-@import url('../assets/css/input.css');
+/* @import url('../assets/css/input.css'); */
 .color-text-green {
 	text-decoration: none;
 	color: #0073e6;
@@ -192,8 +197,7 @@ export default {
 }
 
 .container {
-	padding: 15px;
-	width: 100%;
+	padding: 0 15px;
 	height: 100vh;
 	align-items: center;
 	display: flex;
@@ -201,8 +205,8 @@ export default {
 }
 
 .container__item {
-	width: 546px;
-	padding: 10px;
+	width: 460px;
+	padding: 10px 20px;
 	min-height: 400px;
 	background: #fff;
 	border-radius: 8px;
@@ -211,7 +215,7 @@ export default {
 .container__item .container--header {
 	align-items: center;
 	text-align: center;
-	padding-top: 20px;
+	padding-top: 10px;
 	line-height: 1.4;
 }
 
@@ -259,7 +263,7 @@ export default {
 	.container__item .form-name .firstName,
 	.container__item .form-name .lastName {
 		width: 100%;
-        
+
 		/* margin-right: 8px; */
 	}
 }

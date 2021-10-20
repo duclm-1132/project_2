@@ -16,7 +16,7 @@
                 required
                 class="input"
                 name="username"
-                placeholder="Tên đăng nhập/email"
+                :placeholder="$t('placeholder.enterUserName')"
               />
               <div class="text-msg" :class="{ 'text-muted': textMuteUserName }">{{msg}}</div>
             </div>
@@ -28,34 +28,40 @@
                 required
                 class="input"
                 name
-                placeholder="Mật khẩu"
+                :placeholder="$t('placeholder.enterPassword')"
               />
               <div class="text-msg" :class="{ 'text-muted': textMutePassword }">{{msg}}</div>
             </div>
             <div class="form--forgot-password">
-              <a href="#" class="color-text">Quên mật khẩu?</a>
+              <a href="#" class="color-text">{{$t('nav.forgotPassword')}}</a>
             </div>
             <div class="form--input">
               <input
                 type="submit"
                 class="input form--btn"
-                value="Đăng nhập"
+                :value="$t('nav.login')"
                 @click="btnSignInClick()"
               />
             </div>
             <div class="form--sign-up">
-              Chưa có công ty?
-              <a class="color-text" @click="clickSignUp()">Đăng ký</a>
+              {{$t('nav.DontHaveCompany')}}
+			  <nuxt-link :to="localePath('/SignUp')" class="color-text">{{$t('nav.signIn')}}</nuxt-link>
             </div>
           </div>
         </div>
       </div>
+	  <TheDropdownLanguage/>
     </div>
   </div>
 </template>
 <script>
+import TheDropdownLanguage from '../components/TheDropdownLanguage.vue'
+
 export default {
-	components: {},
+	components: {
+		TheDropdownLanguage
+	},
+
 	data() {
 		return {
 			data1: {},
@@ -88,17 +94,17 @@ export default {
 				if (data.status === 200) {
 					this.data1 = data.data[0]
 					if (!this.data1) {
-						this.$toast.error('Tài khoản không tồn tại.')
+						this.$toast.error(this.$t('toast.accountExist'))
 					}
 					// 3. check password
 					else if (this.data1.password === this.password) {
 						this.$cookies.set('user', this.data1, {
 							maxAge: 60 * 60 * 10
 						})
-						this.$toast.success('Đăng nhập thành công')
+						this.$toast.success(this.$t('toast.loginSuccessful'))
 						this.$router.push({ path: '/employees/HomePage' })
 					} else {
-						this.msg = 'Sai mật khẩu'
+						this.msg = this.$t('toast.wrongPassword')
 						this.textMutePassword = false
 						this.$refs.password.focus()
 					}
@@ -136,13 +142,6 @@ export default {
 			}
 			return false
 		},
-		/**
-		 * Click signUP then go to page SignUp
-		 * CreatedBy: DucLM (20/09/2021)
-		 */
-		clickSignUp() {
-			this.$router.push({ path: '/SignUp' })
-		}
 	}
 }
 </script>
@@ -225,6 +224,7 @@ export default {
 
 .form--sign-up {
 	text-align: center;
+	margin-top: 20px;
 }
 
 .form--sign-up a {

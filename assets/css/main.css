@@ -1,14 +1,14 @@
 @import './input.css';
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-  font-family: 'GoogleSans-Regular';
-}
 @font-face {
   font-family: 'GoogleSans-Regular';
   src: url('../font/GoogleSans-Regular.otf');
+}
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: 'GoogleSans-Regular';
 }
 .row {
   margin-bottom: 8px;
@@ -45,6 +45,9 @@ body {
 }
 .mg-r8 {
   margin-right: 8px;
+}
+.mg-l8{
+  margin-left: 8px;
 }
 .mg-t20 {
   margin-top: 20px;

@@ -42,7 +42,24 @@ export default {
     '@nuxtjs/axios',
     "vue-toastification/nuxt",
     'cookie-universal-nuxt',
+    '@nuxtjs/i18n',
   ],
+
+  // i18n module configuration: https://i18n.nuxtjs.org/options-reference
+  i18n: {
+    lazy: true,
+    langDir: '~/locales/',
+    locales: [
+      { code: 'vi', iso: 'vi-VN', file: 'vn.js', name: 'Tiếng Việt' },
+      { code: 'en', iso: 'en-US', file: 'en.js', name: 'English' },
+    ],
+    // strategy: 'no_prefix',
+    detectBrowserLanguage: false,
+    defaultLocale: 'vi',
+    vueI18n: {
+      fallbackLocale: ['en', 'vi'],
+    },
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
