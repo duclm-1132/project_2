@@ -12,23 +12,23 @@
         @click="selectItem(0)"
       >
         <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-dashboard" title="Tổng quan"></div>
+          <div class="mi mi-24 mi-sidebar-dashboard" :title="$t('nav.dashboard')" ></div>
         </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Tổng quan</div>
+        <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.dashboard')}}</div>
       </a>
-      <a class="menu-item" :class="{ 'witdh-auto': collapse }">
+      <div class="menu-item" :class="{ 'witdh-auto': collapse }">
         <nuxt-link
-          to="#"
+          :to="localePath('/employees/EmployeeList')"
           class="menu-item"
-          :class="{ active: selectedItem == 1, 'witdh-auto': collapse }"
+          :class="{active: selectedItem == 1, 'witdh-auto': collapse, }"
           @click.native="selectItem(1)"
         >
           <div class="menu-item-icon">
-            <div class="mi mi-24 mi-sidebar-cash" title="Tiền mặt"></div>
+            <div class="mi mi-24 mi-sidebar-cash" :title="$t('nav.cash')"></div>
           </div>
-          <div class="menu-item-title" :class="{ hide: collapse }">Tiền mặt</div>
+          <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.cash')}}</div>
         </nuxt-link>
-      </a>
+      </div>
 
       <div
         class="menu-item"
@@ -36,9 +36,9 @@
         @click="selectItem(2)"
       >
         <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-bank" title="Tiền gửi"></div>
+          <div class="mi mi-24 mi-sidebar-bank" :title="$t('nav.deposits')"></div>
         </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Tiền gửi</div>
+        <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.deposits')}}</div>
       </div>
       <div
         class="menu-item"
@@ -136,7 +136,6 @@
         </div>
         <div class="menu-item-title" :class="{ hide: collapse }">Ngân sách</div>
       </div>
-      
     </div>
   </div>
 </template>
@@ -170,7 +169,7 @@ export default {
 		collapseMenu() {
 			this.collapse = !this.collapse
 			this.$emit('collapse', this.collapse)
-		},
+		}
 		/**
 		 * Get window width
 		 * CreatdBy: DucLM (22/09/2021)
@@ -217,8 +216,7 @@ export default {
 .logo-img {
 	height: 32px;
 	width: 96px;
-	margin-left: 10px;
-    background-image:url('../assets/Logo_Module_TiengViet_White.66947422.svg') ;
+	background-image: url('../assets/img/VMO_logo.png');
 	background-size: cover;
 	background-repeat: no-repeat;
 	cursor: pointer;

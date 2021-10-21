@@ -25,16 +25,16 @@
           </div>
           <div class="header-branch-name">
             <div class="text-name">{{user.firstName}} {{user.lastName}}</div>
-            <a href="#">Thông tin tài khoản</a>
+            <a href="#">{{$t('account.infoAccount')}}</a>
           </div>
         </div>
 
         <div class="item-setting flex">
           <div class="header-icon setting__nav"></div>
-          <div class="text">Cài đặt</div>
+          <div class="text">{{$t('nav.setting')}}</div>
         </div>
         <div class="footer">
-          <button class="btn-sign-out" @click="btnSignOutClick">Đăng xuất</button>
+          <button class="btn-sign-out" @click="btnSignOutClick">{{$t('nav.logout')}}</button>
         </div>
       </div>
     </div>

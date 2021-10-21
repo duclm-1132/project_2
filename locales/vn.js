@@ -9,7 +9,8 @@ export default {
         email: 'Email',
         firstName: 'Họ và tên đệm',
         lastName: 'Tên',
-        companyName: 'Tên công ty'
+        companyName: 'Tên công ty',
+        infoAccount: 'Thông tin tài khoản'
     },
 
     nav: {
@@ -20,6 +21,12 @@ export default {
         formRegisterSubTitle: 'Tôi đã có tài khoản?',
         langEn: 'Tiếng Anh',
         langVi: 'Tiếng Việt',
+        logout: 'Logout',
+        setting: 'Setting',
+        dashboard: 'Tổng quan',
+        cash: 'Tiền mặt',
+        deposits: 'Tiền gửi',
+
     },
 
     placeholder: {
@@ -35,5 +42,7 @@ export default {
         registerSuccessful: 'Đăng ký thành công',
         accountExist: 'Tài khoản không tồn tại',
         wrongPassword: 'Sai mật khẩu',
+        required: 'Không được để trống',
+
     }
 }

@@ -1,97 +1,141 @@
 <template>
-  <div class="sign-up">
-    <div class="container">
-      <div class="container__item">
-        <div class="container--header">
-          <div class="header-text">{{$t('nav.signIn')}} VMO</div>
-          <div class="back-sign-in">
-            <p>
-              {{$t('nav.formRegisterSubTitle')}}
-              <nuxt-link :to="localePath('/')" class="color-text-green">{{$t('nav.login')}}</nuxt-link>
-            </p>
-          </div>
-        </div>
-        <div class="container-form">
-          <div class="form-name">
-            <div class="form-item firstName">
-              <label for="firstName">{{$t('account.firstName')}}</label>
-              <input
-                id="firstName"
-                ref="firstName"
-                v-model="user.firstName"
-                type="text"
-                class="input"
-                :placeholder="$t('placeholder.enterFirstName')"
-              />
-              <div class="text-error" :class="{ 'text-muted': textMuteFirstName }">{{ msg }}</div>
-            </div>
-            <div class="form-item lastName">
-              <label for="lastName">{{$t('account.lastName')}}</label>
-              <input
-                id="lastName"
-                ref="lastName"
-                v-model="user.lastName"
-                type="text"
-                class="input"
-                :placeholder="$t('placeholder.enterLastName')"
-              />
-              <div class="text-error" :class="{ 'text-muted': textMuteLastName }">{{ msg }}</div>
-            </div>
-          </div>
-          <div class="form-item">
-            <label for="companyName">{{$t('account.companyName')}}</label>
-            <input
-              id="companyName"
-              ref="companyName"
-              v-model="user.companyName"
-              type="text"
-              class="input"
-              name
-              :placeholder="$t('placeholder.enterCompanyName')"
-            />
-            <div class="text-error" :class="{ 'text-muted': textMuteCompanyName }">{{ msg }}</div>
-          </div>
-          <div class="form-item">
-            <label for="username">{{$t('account.username')+'\/'+$t('account.email')}}</label>
-            <input
-              id="username"
-              ref="username"
-              v-model="user.username"
-              type="text"
-              class="input"
-              name
-              :placeholder="$t('placeholder.enterUserName')"
-            />
-            <div class="text-error" :class="{ 'text-muted': textMuteUsername }">{{ msg }}</div>
-          </div>
-          <div class="form-item">
-            <label for="password">{{$t('account.password')}}</label>
-            <input
-              id="password"
-              ref="password"
-              v-model="user.password"
-              type="password"
-              minlength="8"
-              class="input"
-              :placeholder="$t('placeholder.enterPassword')"
-            />
-            <div class="text-error" :class="{ 'text-muted': textMutePassword }">{{ msg }}</div>
-          </div>
-          <div class="form-item">
-            <input type="submit" class="input btn-submit" :value="$t('nav.signIn')" @click="btnClickSignUp()" />
-          </div>
-        </div>
-      </div>
-      <TheDropdownLanguage />
-    </div>
-  </div>
+	<div class="sign-up">
+		<div class="container">
+			<div class="container__item">
+				<div class="container--header">
+					<div class="header-text">{{ $t('nav.signIn') }} VMO</div>
+					<div class="back-sign-in">
+						<p>
+							{{ $t('nav.formRegisterSubTitle') }}
+							<nuxt-link
+								:to="localePath('/')"
+								class="color-text-green"
+								>{{ $t('nav.login') }}</nuxt-link
+							>
+						</p>
+					</div>
+				</div>
+				<div class="container-form">
+					<div class="form-name">
+						<div class="form-item firstName">
+							<label for="firstName">{{
+								$t('account.firstName')
+							}}</label>
+							<input
+								id="firstName"
+								ref="firstName"
+								v-model="user.firstName"
+								type="text"
+								class="input"
+								:placeholder="$t('placeholder.enterFirstName')"
+							/>
+							<div
+								class="text-error"
+								:class="{ 'text-muted': textMuteFirstName }"
+							>
+								{{ msg }}
+							</div>
+						</div>
+						<div class="form-item lastName">
+							<label for="lastName">{{
+								$t('account.lastName')
+							}}</label>
+							<input
+								id="lastName"
+								ref="lastName"
+								v-model="user.lastName"
+								type="text"
+								class="input"
+								:placeholder="$t('placeholder.enterLastName')"
+							/>
+							<div
+								class="text-error"
+								:class="{ 'text-muted': textMuteLastName }"
+							>
+								{{ msg }}
+							</div>
+						</div>
+					</div>
+					<div class="form-item">
+						<label for="companyName">{{
+							$t('account.companyName')
+						}}</label>
+						<input
+							id="companyName"
+							ref="companyName"
+							v-model="user.companyName"
+							type="text"
+							class="input"
+							name
+							:placeholder="$t('placeholder.enterCompanyName')"
+						/>
+						<div
+							class="text-error"
+							:class="{ 'text-muted': textMuteCompanyName }"
+						>
+							{{ msg }}
+						</div>
+					</div>
+					<div class="form-item">
+						<label for="username">{{
+							$t('account.username') + '\/' + $t('account.email')
+						}}</label>
+						<input
+							id="username"
+							ref="username"
+							v-model="user.username"
+							type="text"
+							class="input"
+							name
+							:placeholder="$t('placeholder.enterUserName')"
+						/>
+						<div
+							class="text-error"
+							:class="{ 'text-muted': textMuteUsername }"
+						>
+							{{ msg }}
+						</div>
+					</div>
+					<div class="form-item">
+						<label for="password">{{
+							$t('account.password')
+						}}</label>
+						<input
+							id="password"
+							ref="password"
+							v-model="user.password"
+							type="password"
+							minlength="8"
+							class="input"
+							:placeholder="$t('placeholder.enterPassword')"
+						/>
+						<div
+							class="text-error"
+							:class="{ 'text-muted': textMutePassword }"
+						>
+							{{ msg }}
+						</div>
+					</div>
+					<div class="form-item">
+						<input
+							type="submit"
+							class="input btn-submit"
+							:value="$t('nav.signIn')"
+							@click="btnClickSignUp()"
+						/>
+					</div>
+				</div>
+			</div>
+			<DropdownLanguage />
+		</div>
+	</div>
 </template>
 <script>
-import TheDropdownLanguage from '../components/TheDropdownLanguage.vue'
+import DropdownLanguage from '../components/DropdownLanguage.vue'
 export default {
 	name: 'SignUp',
 	comments: {
-		TheDropdownLanguage
+		DropdownLanguage
 	},
 	data() {
 		return {

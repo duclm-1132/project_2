@@ -1,6 +1,6 @@
 <template>
   <div class="content" :class="{'position-left-48' : colapseClick}">
-    <router-view></router-view>
+    <RouterView />
   </div>
 </template>
 <script>

@@ -7,10 +7,16 @@ export default {
         forgotPassword: 'Forgot password?',
         login: 'Login',
         signIn: 'Register',
+        logout: 'Logout',
         DontHaveCompany: "Don't have an company?",
         formRegisterSubTitle: 'I already have an account?',
         langEn: 'English',
         langVi: 'Vietnamese',
+        setting: 'Setting',
+        dashboard: 'Dashboard',
+        cash: 'Cash',
+        deposits: 'Deposits',
+
     },
 
     account: {
@@ -20,6 +26,7 @@ export default {
         firstName: 'First Name',
         lastName: 'Last Name',
         companyName: 'Company Name',
+        infoAccount: 'Information Account'
     },
 
     placeholder: {
@@ -35,5 +42,6 @@ export default {
         registerSuccessful: 'Register successful',
         accountExist: 'Account does not exist',
         wrongPassword: 'Wrong password',
+        required: 'Is required',
     }
 }

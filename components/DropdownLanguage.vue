@@ -1,23 +1,27 @@
 <template>
-  <div class="lang-container" @click="selectLang">
-    <i class="left-icon icon" :class="{'icon-vi': lang}"></i>
-	<i class="left-icon icon" :class="{'icon-en': !lang}"></i>
-    <div class="select-value">{{textLang}}</div>
-    <div class="dropdown" :class="{'hide':hide}">
-      <div class="flex" @click="changeLangEn">
-        <i class="icon icon-en mg-r8 mg-l8"></i>
-        <div class="select-value">
-          <nuxt-link :to="switchLocalePath('en')" class="text">{{$t('nav.langEn')}}</nuxt-link>
-        </div>
-      </div>
-      <div class="flex" @click="changeLangVi">
-        <i class="icon icon-vi mg-r8 mg-l8"></i>
-        <div class="select-value">
-          <nuxt-link :to="switchLocalePath('vi')" class="text">{{$t('nav.langVi')}}</nuxt-link>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="lang-container" @click="selectLang">
+		<i class="left-icon icon" :class="{ 'icon-vi': lang }"></i>
+		<i class="left-icon icon" :class="{ 'icon-en': !lang }"></i>
+		<div class="select-value">{{ textLang }}</div>
+		<div class="dropdown" :class="{ hide: hide }">
+			<div class="flex" @click="changeLang('en')">
+				<i class="icon icon-en mg-r8 mg-l8"></i>
+				<div class="select-value">
+					<nuxt-link :to="switchLocalePath('en')" class="text">
+						{{ $t('nav.langEn') }}
+					</nuxt-link>
+				</div>
+			</div>
+			<div class="flex" @click="changeLang('vi')">
+				<i class="icon icon-vi mg-r8 mg-l8"></i>
+				<div class="select-value">
+					<nuxt-link :to="switchLocalePath('vi')" class="text">
+						{{ $t('nav.langVi') }}
+					</nuxt-link>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 <script>
 export default {
@@ -41,13 +45,8 @@ export default {
 		selectLang() {
 			this.hide = !this.hide
 		},
-		changeLangEn() {
-			this.$cookies.set('langChange', 'en', {
-				maxAge: 60 * 60 * 10
-			})
-		},
-		changeLangVi() {
-			this.$cookies.set('langChange', 'vi', {
+		changeLang(lang) {
+			this.$cookies.set('langChange', lang, {
 				maxAge: 60 * 60 * 10
 			})
 		}
@@ -63,7 +62,7 @@ export default {
 	color: #000;
 }
 .lang-container {
-	position: fixed;
+	position: absolute;
 	top: 24px;
 	right: 24px;
 	width: 120px;
