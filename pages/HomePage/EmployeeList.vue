@@ -1,166 +1,116 @@
 <template>
-	<div>
-		<div class="box">
-			<div class="content-item">
-				<div class="content-item-text">Nhân viên</div>
-				<div class="component-btn">
-					<button class="btn-btn color" @click="btnAdd">
-						Thêm mới nhân viên
-					</button>
-				</div>
-			</div>
-		</div>
-		<div class="content-table">
-			<div class="item">
-				<div class="text-msg">{{ msg }}</div>
-				<div class="item-right">
-					<input
-						v-model="filter"
-						type="text"
-						placeholder="Tìm theo mã, tên nhân viên"
-						class="input-search2 input"
-						@input="onChangeInputEmployeeFilter"
-					/>
-					<div
-						class="content-icon refresh"
-						title="Lấy lại dữ liệu"
-						@click="btnRefreshClick"
-					></div>
-				</div>
-			</div>
-			<div class="content-table-height">
-				<table class="tblListEmployee" width="100%">
-					<thead>
-						<tr>
-							<td class="table-input-checkbox fix-left">
-								<input type="checkbox" class="check-box" />
-							</td>
-							<th style="min-width: 130px; border-left: none">
-								MÃ NHÂN VIÊN
-							</th>
-							<th style="min-width: 200px">TÊN NHÂN VIÊN</th>
-							<th>GIỚI TÍNH</th>
-							<th style="align-items: center; text-align: center">
-								NGÀY SINH
-							</th>
-							<th style="min-width: 200px">SỐ CMND</th>
-							<th style="min-width: 230px">CHỨC DANH</th>
-							<th style="min-width: 230px">TÊN ĐƠN VỊ</th>
-							<th>SỐ TÀI KHOẢN</th>
-							<th style="min-width: 230px">TÊN NGÂN HÀNG</th>
-							<th style="min-width: 195px">
-								CHI NHÁNH TK NGÂN HÀNG
-							</th>
-							<th class="table-right-style">CHỨC NĂNG</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr
-							v-for="(employee, index) in employees"
-							:key="index"
-							@dblclick="dblClickTable(employee.id)"
-						>
-							<td class="fix-left1">
-								<input type="checkbox" class="check-box" />
-							</td>
-							<td>{{ employee.employeeCode }}</td>
-							<td style="min-width: 230px">
-								{{ employee.employeeName }}
-							</td>
-							<td>{{ employee.gender | showGender }}</td>
-							<td style="align-items: center; text-align: center">
-								{{ employee.dateOfBirth | dateFormatDDMMYY }}
-							</td>
-							<td style="min-width: 200px">
-								{{ employee.identityNumber }}
-							</td>
-							<td style="min-width: 230px">
-								{{ employee.employeePosition }}
-							</td>
-							<td style="min-width: 230px">
-								{{ employee.departmentId | showDepartment }}
-							</td>
-							<td>{{ employee.bankAccountNumber }}</td>
-							<td style="min-width: 230px">
-								{{ employee.bankName }}
-							</td>
-							<td>{{ employee.bankBranchName }}</td>
+  <div>
+    <div class="box">
+      <div class="content-item">
+        <div class="content-item-text">Nhân viên</div>
+        <div class="component-btn">
+          <button class="btn-btn color" @click="btnAdd">Thêm mới nhân viên</button>
+        </div>
+      </div>
+    </div>
+    <div class="content-table">
+      <div class="item">
+        <div class="text-msg">{{ msg }}</div>
+        <div class="item-right">
+          <input
+            v-model="filter"
+            type="text"
+            placeholder="Tìm theo mã, tên nhân viên"
+            class="input-search2 input"
+            @input="onChangeInputEmployeeFilter"
+          />
+          <div class="content-icon refresh" title="Lấy lại dữ liệu" @click="btnRefreshClick"></div>
+        </div>
+      </div>
+      <div class="content-table-height">
+        <table class="tblListEmployee" width="100%">
+          <thead>
+            <tr>
+              <td class="table-input-checkbox fix-left">
+                <input type="checkbox" class="check-box" />
+              </td>
+              <th style="min-width: 130px; border-left: none">MÃ NHÂN VIÊN</th>
+              <th style="min-width: 200px">TÊN NHÂN VIÊN</th>
+              <th>GIỚI TÍNH</th>
+              <th style="align-items: center; text-align: center">NGÀY SINH</th>
+              <th style="min-width: 200px">SỐ CMND</th>
+              <th style="min-width: 230px">CHỨC DANH</th>
+              <th style="min-width: 230px">TÊN ĐƠN VỊ</th>
+              <th>SỐ TÀI KHOẢN</th>
+              <th style="min-width: 230px">TÊN NGÂN HÀNG</th>
+              <th style="min-width: 195px">CHI NHÁNH TK NGÂN HÀNG</th>
+              <th class="table-right-style">CHỨC NĂNG</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(employee, index) in employees"
+              :key="index"
+              @dblclick="dblClickTable(employee.id)"
+            >
+              <td class="fix-left1">
+                <input type="checkbox" class="check-box" />
+              </td>
+              <td>{{ employee.employeeCode }}</td>
+              <td style="min-width: 230px">{{ employee.employeeName }}</td>
+              <td>{{ employee.gender | showGender }}</td>
+              <td
+                style="align-items: center; text-align: center"
+              >{{ employee.dateOfBirth | dateFormatDDMMYY }}</td>
+              <td style="min-width: 200px">{{ employee.identityNumber }}</td>
+              <td style="min-width: 230px">{{ employee.employeePosition }}</td>
+              <td style="min-width: 230px">{{ employee.departmentId | showDepartment }}</td>
+              <td>{{ employee.bankAccountNumber }}</td>
+              <td style="min-width: 230px">{{ employee.bankName }}</td>
+              <td>{{ employee.bankBranchName }}</td>
 
-							<div
-								class="table-right-style1"
-								:style="{ 'z-index': 100 - index }"
-							>
-								<div class="btn-edit">
-									<button class="btn-btn hover">
-										<div class="flex btn-btn-text">
-											<span
-												class="pr-4"
-												style="
-													color: #0075c0;
-													font-weight: 600;
-												"
-												@click="
-													btnEditClick(
-														employee.id,
-														employee.employeeCode
-													)
-												"
-												>Sửa</span
-											>
-										</div>
-									</button>
-								</div>
-								<div
-									class="btn-delete"
-									@click="
-										btnDeleteClick(
-											employee.id,
-											employee.employeeCode
-										)
-									"
-								>
-									Xóa
-								</div>
-							</div>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="content-navpage">
-				<div class="content-navpage-text-left">
-					Tổng số: {{ totalRecord }} bản ghi
-				</div>
-				<div class="footer-complete">
-					<select
-						class="input"
-						:value="pageSize"
-						@change.prevent="onSelectedValue"
-					>
-						<option value="10">10 bản ghi trên 1 trang</option>
-						<option value="20">20 bản ghi trên 1 trang</option>
-						<option value="30">30 bản ghi trên 1 trang</option>
-						<option value="50">50 bản ghi trên 1 trang</option>
-						<option value="100">100 bản ghi trên 1 trang</option>
-					</select>
-				</div>
-			</div>
-		</div>
-		<!-- load icon -->
-		<div v-if="isBusy" class="fa-3x">
-			<i class="fas fa-spinner fa-spin" style="color: green"></i>
-		</div>
-		<EmployeeDetail
-			:employee="selectEmployee"
-			:flag="status"
-			:hide="hide"
-			@hideDialogNotLoad="hideDialogNotLoad"
-			@hideDialog="hideDialog"
-		/>
-		<Popup
-			
-			@hidePopup="hidePopup"
-		/>
-	</div>
+              <div class="table-right-style1" :style="{ 'z-index': 100 - index }">
+                <div class="btn-edit">
+                  <button class="btn-btn hover">
+                    <div class="flex btn-btn-text">
+                      <span
+                        class="pr-4"
+                        style="color: #0075c0; font-weight: 600"
+                        @click="btnEditClick(employee.id, employee.employeeCode)"
+                      >Sửa</span>
+                    </div>
+                  </button>
+                </div>
+                <div
+                  class="btn-delete"
+                  @click="btnDeleteClick(employee.id, employee.employeeCode)"
+                >Xóa</div>
+              </div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="content-navpage">
+        <div class="content-navpage-text-left">Tổng số: {{ totalRecord }} bản ghi</div>
+        <div class="footer-complete">
+          <select class="input" :value="pageSize" @change.prevent="onSelectedValue">
+            <option value="10">10 bản ghi trên 1 trang</option>
+            <option value="20">20 bản ghi trên 1 trang</option>
+            <option value="30">30 bản ghi trên 1 trang</option>
+            <option value="50">50 bản ghi trên 1 trang</option>
+            <option value="100">100 bản ghi trên 1 trang</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <!-- load icon -->
+    <div v-if="isBusy" class="fa-3x">
+      <i class="fas fa-spinner fa-spin" style="color: green"></i>
+    </div>
+    <EmployeeDetail
+      :employee="selectEmployee"
+      :flag="status"
+      :hide="hide"
+      @hideDialogNotLoad="hideDialogNotLoad"
+      @hideDialog="hideDialog"
+    />
+    <Popup @hidePopup="hidePopup" />
+  </div>
 </template>
 <script>
 import EmployeeDetail from './EmployeeDetail.vue'
@@ -377,7 +327,7 @@ export default {
 }
 </script>
 <style scoped>
-@import url('../assets/css/table.css');
+@import url('../../assets/css/table.css');
 
 .content .box {
 	padding: 22px 0 16px 0;
@@ -456,7 +406,7 @@ export default {
 	display: flex !important;
 }
 .header-icon {
-	background: url('../assets/Sprites.5f05e81f.svg') no-repeat;
+	background: url('../../assets/Sprites.5f05e81f.svg') no-repeat;
 	cursor: pointer;
 	min-width: 16px;
 	min-height: 16px;
@@ -503,7 +453,7 @@ export default {
 	background-position: -224px -360px;
 }
 .content-icon {
-	background: url('../assets/Sprites.5f05e81f.svg') no-repeat;
+	background: url('../../assets/Sprites.5f05e81f.svg') no-repeat;
 	cursor: pointer;
 	min-width: 24px;
 	min-height: 24px;

@@ -106,7 +106,7 @@ export default {
               maxAge: 60 * 60 * 10,
             })
             this.$toast.success(this.$t('toast.loginSuccessful'))
-            this.$router.push({ path: '/HomePage' })
+            this.$router.push(this.localePath({ path: '/HomePage' }))
           } else {
             this.msg = this.$t('toast.wrongPassword')
             this.textMutePassword = false

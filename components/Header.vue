@@ -41,22 +41,18 @@
   </div>
 </template>
 <script>
-// import router from "../../router/index";
-
 export default {
 	props: {
 		colapseClick: { type: Boolean, default: false }
 	},
 	data() {
 		return {
-            user:{
-                
-            },
+			user: {},
 			hideDropdown: { type: Boolean, default: true }
 		}
 	},
 	created() {
-		this.user = this.$cookies.get("user");
+		this.user = this.$cookies.get('user')
 	},
 	destroyed() {
 		this.btnSignOutClick()
@@ -71,7 +67,7 @@ export default {
 		btnSignOutClick() {
 			this.$cookies.remove('user')
 			this.user = {}
-            this.$router.push({path:"/"})
+			this.$router.push({ path: '/' })
 		},
 		/**
 		 * show dropdown

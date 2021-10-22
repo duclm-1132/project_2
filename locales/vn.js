@@ -43,6 +43,6 @@ export default {
         accountExist: 'Tài khoản không tồn tại',
         wrongPassword: 'Sai mật khẩu',
         required: 'Không được để trống',
-
+        noData: 'Không có dữ liệu',
     }
 }

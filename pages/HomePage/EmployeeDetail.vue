@@ -458,7 +458,7 @@ export default {
 	padding: 10px 20px;
 }
 .modal__container .modal--close {
-	background: url('../assets/icon/x.svg') no-repeat center;
+	background: url('../../assets/icon/x.svg') no-repeat center;
 	padding: 18px;
 	position: absolute;
 	right: 0;

@@ -17,8 +17,8 @@
         <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.dashboard')}}</div>
       </a>
       <div class="menu-item" :class="{ 'witdh-auto': collapse }">
-        <nuxt-link
-          :to="localePath('/employees/EmployeeList')"
+        <router-link
+          :to="localePath('/HomePage/EmployeeList')"
           class="menu-item"
           :class="{active: selectedItem == 1, 'witdh-auto': collapse, }"
           @click.native="selectItem(1)"
@@ -27,7 +27,7 @@
             <div class="mi mi-24 mi-sidebar-cash" :title="$t('nav.cash')"></div>
           </div>
           <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.cash')}}</div>
-        </nuxt-link>
+        </router-link>
       </div>
 
       <div

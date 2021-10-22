@@ -43,5 +43,6 @@ export default {
         accountExist: 'Account does not exist',
         wrongPassword: 'Wrong password',
         required: 'Is required',
+        noData: 'No data',
     }
 }
