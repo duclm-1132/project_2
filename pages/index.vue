@@ -1,13 +1,15 @@
 <template>
-  <SignIn />
+  <div>
+    <SignIn />
+  </div>
 </template>
 
 <script>
 import SignIn from './SignIn.vue'
 
 export default {
-  components:{
-    SignIn
-  }
+	components: {
+		SignIn
+	}
 }
 </script>

@@ -103,7 +103,7 @@ export default {
           // 3. check password
           else if (this.data1.password === this.password) {
             this.$cookies.set('user', this.data1, {
-              maxAge: 60 * 60 * 10,
+              maxAge: 60 * 60 * 100,
             })
             this.$toast.success(this.$t('toast.loginSuccessful'))
             this.$router.push(this.localePath({ path: '/HomePage' }))

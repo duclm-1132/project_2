@@ -29,16 +29,13 @@
               <td class="table-input-checkbox fix-left">
                 <input type="checkbox" class="check-box" />
               </td>
-              <th style="min-width: 130px; border-left: none">MÃ NHÂN VIÊN</th>
+              <th style="min-width: 132px; border-left: none">MÃ NHÂN VIÊN</th>
               <th style="min-width: 200px">TÊN NHÂN VIÊN</th>
               <th>GIỚI TÍNH</th>
               <th style="align-items: center; text-align: center">NGÀY SINH</th>
               <th style="min-width: 200px">SỐ CMND</th>
               <th style="min-width: 230px">CHỨC DANH</th>
-              <th style="min-width: 230px">TÊN ĐƠN VỊ</th>
-              <th>SỐ TÀI KHOẢN</th>
-              <th style="min-width: 230px">TÊN NGÂN HÀNG</th>
-              <th style="min-width: 195px">CHI NHÁNH TK NGÂN HÀNG</th>
+
               <th class="table-right-style">CHỨC NĂNG</th>
             </tr>
           </thead>
@@ -54,15 +51,13 @@
               <td>{{ employee.employeeCode }}</td>
               <td style="min-width: 230px">{{ employee.employeeName }}</td>
               <td>{{ employee.gender | showGender }}</td>
-              <td
-                style="align-items: center; text-align: center"
-              >{{ employee.dateOfBirth | dateFormatDDMMYY }}</td>
+              <td style="align-items: center; text-align: center">
+                {{
+                employee.dateOfBirth | dateFormatDDMMYY(employee.dateOfBirth)
+                }}
+              </td>
               <td style="min-width: 200px">{{ employee.identityNumber }}</td>
               <td style="min-width: 230px">{{ employee.employeePosition }}</td>
-              <td style="min-width: 230px">{{ employee.departmentId | showDepartment }}</td>
-              <td>{{ employee.bankAccountNumber }}</td>
-              <td style="min-width: 230px">{{ employee.bankName }}</td>
-              <td>{{ employee.bankBranchName }}</td>
 
               <div class="table-right-style1" :style="{ 'z-index': 100 - index }">
                 <div class="btn-edit">
@@ -71,7 +66,9 @@
                       <span
                         class="pr-4"
                         style="color: #0075c0; font-weight: 600"
-                        @click="btnEditClick(employee.id, employee.employeeCode)"
+                        @click="
+                          btnEditClick(employee.id, employee.employeeCode)
+                        "
                       >Sửa</span>
                     </div>
                   </button>
@@ -103,13 +100,13 @@
       <i class="fas fa-spinner fa-spin" style="color: green"></i>
     </div>
     <EmployeeDetail
-      :employee="selectEmployee"
       :flag="status"
       :hide="hide"
+      :employee="selectEmployee"
       @hideDialogNotLoad="hideDialogNotLoad"
       @hideDialog="hideDialog"
     />
-    <Popup @hidePopup="hidePopup" />
+    <Popup :employee-click-code='recordCode' :employee-id="recordId" :hide-popup='popHide' @hidePopup='hidePopup' />
   </div>
 </template>
 <script>
@@ -121,9 +118,46 @@ export default {
 		EmployeeDetail,
 		Popup
 	},
+	filters: {
+		showGender(value) {
+			if (value === '1') {
+				return 'Nam'
+			} else if (value === '0') {
+				return 'Nữ'
+			} else if (value === '2') {
+				return 'Không xác định'
+			}
+		},
+		showDepartment(value) {
+			if (!value) return ''
+			if (value === '11452b0c-768e-5ff7-0d63-eeb1d8ed8cef') {
+				return 'Phòng nhân sự'
+			} else if (value === '142cb08f-7c31-21fa-8e90-67245e8b283e') {
+				return 'Phòng marketing'
+			} else if (value === '17120d02-6ab5-3e43-18cb-66948daf6128') {
+				return 'Phòng kế toán'
+			} else if (value === '469b3ece-744a-45d5-957d-e8c757976496') {
+				return 'Phòng nghiên cứu'
+			} else if (value === '4e272fc4-7875-78d6-7d32-6a1673ffca7c') {
+				return 'Phòng đào tạo'
+			}
+		},
+		dateFormatDDMMYY(date) {
+			if (date == null) return ''
+			if (date === '0001-01-01T00:00:00') return ''
+			const newDate = new Date(date)
+			let day = newDate.getDate()
+			let month = newDate.getMonth() + 1
+			const year = newDate.getFullYear()
+			day = day < 10 ? '0' + day : day
+			month = month < 10 ? '0' + month : month
+			return `${day}/${month}/${year}`
+		}
+	},
 	props: {
 		colapseClick: { type: Boolean, default: false } // responsive khi đóng mở navbar
 	},
+
 	data() {
 		return {
 			employees: [], // mảng danh sách nhân viên
@@ -133,7 +167,7 @@ export default {
 			hide: true, // ẩn component EmployeeDetail
 			status: null, // trạng thái sửa, thêm mới
 			selectEmployee: {}, // data 1 nhân viên khi dblClick hoặc click btn Sửa
-			employeeTemp: {},
+			// employeeTemp: {},
 			popHide: true,
 			recordId: null, // Lưu giá trị của EmployeeId để truyền qua Popup
 			recordCode: null, // Lưu giá trị Employeecode truyền qua Popup
@@ -158,21 +192,18 @@ export default {
 			setTimeout(() => {
 				this.isBusy = false
 			}, 5000)
+			const res = await this.$axios.get(
+				`/employees?userId=${userData.id}`
+			)
 
-			await this.$axios
-				.$get(`/employees?userId=${userData.id}`)
-				.then((res) => {
-					this.employees = res.data
-					this.totalRecord = this.employees.length
-					if (this.employees.length === 0) {
-						this.msg = 'Không có dữ liệu'
-					}
-				})
-				.catch(() => {})
-				.then(() => {
-					// Load xong thì tắt icon load
-					this.isBusy = false
-				})
+			if (res.status === 200) {
+				this.employees = res.data
+				this.totalRecord = this.employees.length
+				if (this.employees.length === 0) {
+					this.msg = 'Không có dữ liệu'
+				}
+				this.isBusy = false
+			}
 		},
 		onSelectedValue(e) {
 			const val = e.target.value
@@ -183,7 +214,7 @@ export default {
 		async filterData() {
 			this.isBusy = true
 			await this.$axios
-				.$get(
+				.get(
 					`/employees?q=${this.filter}&_page=${this.pageIndex}&_limit=${this.pageSize}`
 				)
 				.then((response) => {
@@ -264,7 +295,7 @@ export default {
 			// Fill employee vào dialog
 			const userData = this.$cookies.get('user')
 			await this.$axios
-				.$get(`/employees?userId=${userData.id}&&id=${eId}`)
+				.get(`/employees?userId=${userData.id}&&id=${eId}`)
 				.then((response) => {
 					// console.log(response);
 					this.selectEmployee = response.data[0]
@@ -277,7 +308,7 @@ export default {
 					)
 
 					// copy data object
-					this.employeeTemp = Object.assign({}, this.selectEmployee)
+					// this.employeeTemp = Object.assign({}, this.selectEmployee)
 				})
 				.catch(() => {
 					// console.log(response)
@@ -297,7 +328,7 @@ export default {
 		async filterSetTotalRecord() {
 			this.isBusy = true
 			await this.$axios
-				.$get(
+				.get(
 					`/employees?q=${this.filter}&_page=${this.pageIndex}&_limit=${this.pageSize}`
 				)
 				.then((res) => {

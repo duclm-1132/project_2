@@ -21,7 +21,7 @@ table thead th {
   border-right: 1px solid #bbb;
   z-index: 2;
 
-  /* min-width: 143px; */
+  min-width: 143px;
 }
 
 th,

@@ -12,53 +12,22 @@
         @click="selectItem(0)"
       >
         <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-dashboard" :title="$t('nav.dashboard')" ></div>
+          <div class="mi mi-24 mi-sidebar-dashboard" :title="$t('nav.dashboard')"></div>
         </div>
         <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.dashboard')}}</div>
       </a>
       <div class="menu-item" :class="{ 'witdh-auto': collapse }">
-        <router-link
-          :to="localePath('/HomePage/EmployeeList')"
+        <NuxtLink
+          :to="localePath({path:'/HomePage/EmployeeList'})"
           class="menu-item"
           :class="{active: selectedItem == 1, 'witdh-auto': collapse, }"
           @click.native="selectItem(1)"
         >
           <div class="menu-item-icon">
-            <div class="mi mi-24 mi-sidebar-cash" :title="$t('nav.cash')"></div>
+            <div class="mi-24 mi mi-sidebar-employee" :title="$t('nav.employee')"></div>
           </div>
-          <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.cash')}}</div>
-        </router-link>
-      </div>
-
-      <div
-        class="menu-item"
-        :class="{ active: selectedItem == 2, 'witdh-auto': collapse }"
-        @click="selectItem(2)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-bank" :title="$t('nav.deposits')"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.deposits')}}</div>
-      </div>
-      <div
-        class="menu-item"
-        :class="{ active: selectedItem == 3, 'witdh-auto': collapse }"
-        @click="selectItem(3)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-pu" title="Mua hàng"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Mua hàng</div>
-      </div>
-      <div
-        class="menu-item"
-        :class="{ active: selectedItem == 4, 'witdh-auto': collapse }"
-        @click="selectItem(4)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-sale" title="Bán hàng"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Bán hàng</div>
+          <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.employee')}}</div>
+        </NuxtLink>
       </div>
       <div
         class="menu-item"
@@ -72,69 +41,13 @@
       </div>
       <div
         class="menu-item"
-        :class="{ active: selectedItem == 6, 'witdh-auto': collapse }"
-        @click="selectItem(6)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-stock" title="Kho"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Kho</div>
-      </div>
-      <div
-        class="menu-item"
         :class="{ active: selectedItem == 7, 'witdh-auto': collapse }"
         @click="selectItem(7)"
       >
         <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-tools" title="Công cụ dụng cụ"></div>
+          <div class="mi mi-24 mi-sidebar-tools" :title="$t('nav.setting')"></div>
         </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Công cụ dụng cụ</div>
-      </div>
-      <div class="menu-item" :class="{ active: selectedItem == 8 }" @click="selectItem(8)">
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-fixed-assets" title="Tài sản cố định"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Tài sản cố định</div>
-      </div>
-      <div
-        class="menu-item"
-        :class="{ active: selectedItem == 9, 'witdh-auto': collapse }"
-        @click="selectItem(9)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-tax" title="Thuế"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Thuế</div>
-      </div>
-      <div
-        class="menu-item"
-        :class="{ active: selectedItem == 10, 'witdh-auto': collapse }"
-        @click="selectItem(10)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-price" title="Giá thành"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Giá thành</div>
-      </div>
-      <div
-        class="menu-item"
-        :class="{ active: selectedItem == 11, 'witdh-auto': collapse }"
-        @click="selectItem(11)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-general" title="Tổng hợp"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Tổng hợp</div>
-      </div>
-      <div
-        class="menu-item"
-        :class="{ active: selectedItem == 12, 'witdh-auto': collapse }"
-        @click="selectItem(12)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-budget" title="Ngân sách"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Ngân sách</div>
+        <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.setting')}}</div>
       </div>
     </div>
   </div>
@@ -318,7 +231,9 @@ export default {
 .mi-sidebar-invoice {
 	background-position: -249px -1628px;
 }
-
+.mi-sidebar-employee {
+	background-position: -592px -1631px;
+}
 .mi-sidebar-stock {
 	background-position: -291px -1628px;
 }

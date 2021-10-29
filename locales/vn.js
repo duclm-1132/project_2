@@ -10,7 +10,7 @@ export default {
         firstName: 'Họ và tên đệm',
         lastName: 'Tên',
         companyName: 'Tên công ty',
-        infoAccount: 'Thông tin tài khoản'
+        infoAccount: 'Thông tin tài khoản',
     },
 
     nav: {
@@ -21,12 +21,10 @@ export default {
         formRegisterSubTitle: 'Tôi đã có tài khoản?',
         langEn: 'Tiếng Anh',
         langVi: 'Tiếng Việt',
-        logout: 'Logout',
-        setting: 'Setting',
+        logout: 'Đăng xuất',
+        setting: 'Cài đặt',
         dashboard: 'Tổng quan',
-        cash: 'Tiền mặt',
-        deposits: 'Tiền gửi',
-
+        employee: 'Danh sách nhân viên',
     },
 
     placeholder: {
@@ -34,7 +32,7 @@ export default {
         enterLastName: 'Nhập tên',
         enterCompanyName: 'Nhập tên công ty',
         enterUserName: 'Nhập tên đăng nhập/email',
-        enterPassword: 'Nhập mật khẩu'
+        enterPassword: 'Nhập mật khẩu',
     },
 
     toast: {
@@ -44,5 +42,5 @@ export default {
         wrongPassword: 'Sai mật khẩu',
         required: 'Không được để trống',
         noData: 'Không có dữ liệu',
-    }
+    },
 }

@@ -1,24 +1,26 @@
 <template>
-	<div class="modal" :class="{ hide: hidePopup }">
-		<div class="modal__container">
-			<div class="body">
-				Bạn có muốn xóa nhân viên &lt;{{ employeeClickCode }}&gt; không?
-			</div>
-			<div class="footer">
-				<button class="btn btn-cancel" @click="btnCloseClick">
-					Không
-				</button>
-				<button class="btn btn-submit" @click="btnSubmit">Có</button>
-			</div>
-		</div>
-	</div>
+  <div class="modal" :class="{ hide: hidePopup }">
+    <div class="modal__container">
+      <div class="body">Bạn có muốn xóa nhân viên &lt;{{ employeeClickCode }}&gt; không?</div>
+      <div class="footer">
+        <button class="btn btn-cancel" @click="btnCloseClick">Không</button>
+        <button class="btn btn-submit" @click="btnSubmit">Có</button>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 export default {
 	props: {
-		hidePopup: { type: Boolean, default: true },
+		hidePopup: { type: Boolean, default: false },
 		employeeClickCode: { type: String, default: null },
 		employeeClickId: { type: String, default: null }
+	},
+	data() {
+		return {
+			// employeeClickCode: { type: String, default: null },
+			// employeeClickId: { type: String, default: null }
+		}
 	},
 	created() {
 		this.$emit('hidePopup')
@@ -40,7 +42,7 @@ export default {
 		 */
 		async btnSubmit() {
 			await this.$axios
-				.$delete(`/employees/${this.employeeClickId}`)
+				.delete(`/employees/${this.employeeClickId}`)
 				.then((res) => {
 					this.$emit('hidePopup')
 					this.$toast.success(`Đã xóa ${this.employeeClickCode}`)

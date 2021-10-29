@@ -14,9 +14,7 @@ export default {
         langVi: 'Vietnamese',
         setting: 'Setting',
         dashboard: 'Dashboard',
-        cash: 'Cash',
-        deposits: 'Deposits',
-
+        employee: 'Employees',
     },
 
     account: {
@@ -26,7 +24,7 @@ export default {
         firstName: 'First Name',
         lastName: 'Last Name',
         companyName: 'Company Name',
-        infoAccount: 'Information Account'
+        infoAccount: 'Information Account',
     },
 
     placeholder: {
@@ -44,5 +42,5 @@ export default {
         wrongPassword: 'Wrong password',
         required: 'Is required',
         noData: 'No data',
-    }
+    },
 }
