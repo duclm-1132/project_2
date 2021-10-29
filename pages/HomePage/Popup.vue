@@ -1,10 +1,10 @@
 <template>
   <div class="modal" :class="{ hide: hidePopup }">
     <div class="modal__container">
-      <div class="body">Bạn có muốn xóa nhân viên &lt;{{ employeeClickCode }}&gt; không?</div>
+      <div class="body">{{$t('nav.deleteEmployee')}} &lt;{{ employeeClickCode }}&gt;?</div>
       <div class="footer">
-        <button class="btn btn-cancel" @click="btnCloseClick">Không</button>
-        <button class="btn btn-submit" @click="btnSubmit">Có</button>
+        <button class="btn btn-cancel" @click="btnCloseClick">{{$t('nav.btnNo')}}</button>
+        <button class="btn btn-submit" @click="btnSubmit">{{$t('nav.btnYes')}}</button>
       </div>
     </div>
   </div>
@@ -45,7 +45,7 @@ export default {
 				.delete(`/employees/${this.employeeClickId}`)
 				.then((res) => {
 					this.$emit('hidePopup')
-					this.$toast.success(`Đã xóa ${this.employeeClickCode}`)
+					this.$toast.success(`${this.$t('toast.deleteSuccessful')} ${this.employeeClickCode}`)
 				})
 				.catch((res) => {
 					this.$emit('hidePopup')

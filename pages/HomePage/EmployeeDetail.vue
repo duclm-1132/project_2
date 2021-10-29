@@ -3,14 +3,14 @@
     <div class="modal__container">
       <div class="modal--close" @click="btnCloseClick()"></div>
       <header class="modal--header">
-        <div class="header--text">Thông tin nhân viên</div>
+        <div class="header--text">{{$t('employee.infomationEmployee')}}</div>
       </header>
       <div class="modal--body">
         <div class="row col-full flex">
           <div class="col-half flex mg-r20">
             <div class="form-group">
               <label for="employeeCode" class="text-label">
-                Mã
+                {{$t('employee.employeeCode')}}
                 <span class="text-red">*</span>
               </label>
               <input
@@ -21,13 +21,13 @@
                 maxlength="10"
                 required
                 class="input"
-                placeholder="Mã nhân viên"
+                :placeholder="$t('employee.employeeCode')"
               />
               <!-- <div class="text-msg" :class="{ 'text-muted': textMuteEmployeeCode }">{{msg}}</div> -->
             </div>
             <div class="col-half">
               <label for="employeeName" class="text-label">
-                Tên
+                 {{$t('employee.employeeName')}}
                 <span class="text-red">*</span>
               </label>
               <input
@@ -37,14 +37,14 @@
                 type="text"
                 required
                 class="input"
-                placeholder="Tên nhân viên"
+                :placeholder="$t('employee.employeeName')"
               />
               <!-- <div class="text-msg" :class="{ 'text-muted': textMuteEmployeeName }">{{msg}}</div> -->
             </div>
           </div>
           <div class="col-half flex">
             <div class="form-group col-half">
-              <label for="dateOfBirth" class="text-label">Ngày sinh</label>
+              <label for="dateOfBirth" class="text-label">{{$t('employee.dateOfBirth')}}</label>
               <input
                 id="dateOfBirth"
                 v-model="$attrs.employee.dateOfBirth"
@@ -54,9 +54,9 @@
               />
             </div>
             <div class="col-half">
-              <label class="text-label">Giới tính</label>
+              <label class="text-label">{{$t('employee.gender')}}</label>
               <div class="flex form-radio">
-                <label for="men">Nam</label>
+                <label for="men">{{$t('employee.male')}}</label>
                 <input
                   id="men"
                   v-model="$attrs.employee.gender"
@@ -65,7 +65,7 @@
                   name="gender"
                   value="1"
                 />
-                <label for="women">Nữ</label>
+                <label for="women">{{$t('employee.female')}}</label>
                 <input
                   id="women"
                   v-model="$attrs.employee.gender"
@@ -74,7 +74,7 @@
                   name="gender"
                   value="0"
                 />
-                <label for="other">Khác</label>
+                <label for="other">{{$t('employee.other')}}</label>
                 <input
                   id="other"
                   v-model="$attrs.employee.gender"
@@ -90,7 +90,7 @@
         <div class="row col-full flex">
           <div class="col-half mg-r20">
             <div class>
-              <label class="text-label" for="department">Đơn vị</label>
+              <label class="text-label" for="department">{{$t('employee.department')}}</label>
               <select id="department" v-model="$attrs.employee.departmentId" class="input">
                 <option
                   v-for="(department, index) in departments"
@@ -102,17 +102,17 @@
           </div>
           <div class="col-half flex">
             <div class="form-group col-6">
-              <label for="identityNumber" class="text-label">Số CMND</label>
+              <label for="identityNumber" class="text-label">{{$t('employee.identifyNumber')}}</label>
               <input
                 id="identityNumber"
                 v-model="$attrs.employee.identityNumber"
                 type="number"
                 class="input"
-                placeholder="Số CCCD/CMND"
+                :placeholder="$t('employee.identifyNumber')"
               />
             </div>
             <div class="col-4">
-              <label for="identityDate" class="text-label">Ngày cấp</label>
+              <label for="identityDate" class="text-label">{{$t('employee.identifyDate')}}</label>
               <input
                 id="identityDate"
                 v-model="$attrs.employee.identityDate"
@@ -126,63 +126,63 @@
         <div class="row col-full flex">
           <div class="col-half mg-r20">
             <div class="form-group col-full">
-              <label for="position" class="text-label">Chức danh</label>
+              <label for="position" class="text-label">{{$t('employee.employeePosition')}}</label>
               <input
                 id="position"
                 v-model="$attrs.employee.employeePosition"
                 type="text"
                 class="input"
-                placeholder="Chức danh"
+                :placeholder="$t('employee.employeePosition')"
               />
             </div>
           </div>
           <div class="col-half">
             <div class="form-group col-full">
-              <label for="identityPlace" class="text-label">Nơi cấp</label>
+              <label for="identityPlace" class="text-label">{{$t('employee.identifyPlace')}}</label>
               <input
                 id="identityPlace"
                 v-model="$attrs.employee.identityPlace"
                 type="text"
                 class="input"
-                placeholder="Nơi cấp"
+                :placeholder="$t('employee.identifyPlace')"
               />
             </div>
           </div>
         </div>
         <div class="row col-full mg-t20">
           <div class="form-group col-full">
-            <label for="address" class="text-label">Địa chỉ</label>
+            <label for="address" class="text-label">{{$t('employee.address')}}</label>
             <input
               id="address"
               v-model="$attrs.employee.address"
               type="text"
               class="input"
-              placeholder="Địa chỉ"
+              :placeholder="$t('employee.address')"
             />
           </div>
         </div>
         <div class="row col-ful flex">
           <div class="row col-5 mg-r8">
             <div class="form-group col-full">
-              <label for="phoneNumber" class="text-label">ĐT di động</label>
+              <label for="phoneNumber" class="text-label">{{$t('employee.phoneNumber')}}</label>
               <input
                 id="phoneNumber"
                 v-model="$attrs.employee.phoneNumber"
                 type="text"
                 class="input"
-                placeholder="Số điện thoại di động"
+                :placeholder="$t('employee.phoneNumber')"
               />
             </div>
           </div>
           <div class="row col-5 mg-r8">
             <div class="form-group col-full">
-              <label for="telephoneNumber" class="text-label">ĐT cố định</label>
+              <label for="telephoneNumber" class="text-label">{{$t('employee.tel')}}</label>
               <input
                 id="telephoneNumber"
                 v-model="$attrs.employee.telephoneNumber"
                 type="text"
                 class="input"
-                placeholder="Số điện thoại có định"
+                :placeholder="$t('employee.tel')"
               />
             </div>
           </div>
@@ -202,37 +202,37 @@
         <div class="row col-ful flex">
           <div class="row col-5 mg-r8">
             <div class="form-group col-full">
-              <label for="bankAccount" class="text-label">Tài khoản ngân hàng</label>
+              <label for="bankAccount" class="text-label">{{$t('employee.bankAccountNumber')}}</label>
               <input
                 id="bankAccount"
                 v-model="$attrs.employee.bankAccountNumber"
                 type="text"
                 class="input"
-                placeholder="Tài khoản ngân hàng"
+                :placeholder="$t('employee.bankAccountNumber')"
               />
             </div>
           </div>
           <div class="row col-5 mg-r8">
             <div class="form-group col-full">
-              <label for="bankName" class="text-label">Tên ngân hàng</label>
+              <label for="bankName" class="text-label">{{$t('employee.bankName')}}</label>
               <input
                 id="bankName"
                 v-model="$attrs.employee.bankName"
                 type="text"
                 class="input"
-                placeholder="Tên ngân hàng"
+                :placeholder="$t('employee.bankName')"
               />
             </div>
           </div>
           <div class="row col-5">
             <div class="form-group col-full">
-              <label for="branchBankName" class="text-label">Chi nhánh</label>
+              <label for="branchBankName" class="text-label">{{$t('employee.bankBranchName')}}</label>
               <input
                 id="branchBankName"
                 v-model="$attrs.employee.bankBranchName"
                 type="text"
                 class="input"
-                placeholder="Tên chi nhánh"
+                :placeholder="$t('employee.bankBranchName')"
               />
             </div>
           </div>
@@ -240,10 +240,10 @@
       </div>
       <div class="modal--footer">
         <div class="footer-left">
-          <button class="btn btn-cancel" @click="btnCloseClick">Hủy</button>
+          <button class="btn btn-cancel" @click="btnCloseClick">{{$t('btn.cancel')}}</button>
         </div>
         <div class="footer-right">
-          <button class="btn btn-save" @click="btnSaveClick">Lưu</button>
+          <button class="btn btn-save" @click="btnSaveClick">{{$t('btn.save')}}</button>
         </div>
       </div>
     </div>
@@ -352,7 +352,7 @@ export default {
 		 * Check employeeCode and employeeName
 		 */
 		checkEmployee() {
-			this.msg = 'Không được để trống'
+			this.msg = this.$t('toast.required')
 			if (!this.employee.employeeCode) {
 				// this.textMuteEmployeeCode = false;
 				this.$refs.employeeCode.focus()
@@ -375,11 +375,11 @@ export default {
 				.then((res) => {
 					// console.log(res)
 					this.$emit('hideDialog')
-					this.$toast.success('Thêm thành công')
+					this.$toast.success(`${this.$t('toast.addSuccessful')}`)
 				})
 				.catch(() => {
 					// console.log(res.response.data.devMsg)
-					this.$toast.error('Thêm thất bại')
+					this.$toast.error(`${this.$t('toast.addFail')}`)
 				})
 		},
 		/**
@@ -392,12 +392,12 @@ export default {
 				.then((res) => {
 					// console.log(res.data)
 					this.$emit('hideDialog')
-					this.$toast.success('Sửa thành công')
+					this.$toast.success(`${this.$t('toast.editSuccessful')}`)
 				})
 				.catch(() => {
 					// console.log(res.data)
 					// console.log(this.employee)
-					this.$toast.error('Sửa thất bại')
+					this.$toast.error(`${this.$t('toast.editFail')}`)
 					// this.$emit("hideDialog");
 				})
 		}

@@ -5,17 +5,17 @@
       <div class="logo-img" :class="{ hide: collapse }"></div>
     </div>
     <div class="menu-item-list">
-      <a
-        href="#"
+      <nuxt-link
+        :to="localePath({path:'/HomePage/Dashboard'})"
         class="menu-item"
         :class="{ active: selectedItem == 0, 'witdh-auto': collapse }"
-        @click="selectItem(0)"
+        @click.native="selectItem(0)"
       >
         <div class="menu-item-icon">
           <div class="mi mi-24 mi-sidebar-dashboard" :title="$t('nav.dashboard')"></div>
         </div>
         <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.dashboard')}}</div>
-      </a>
+      </nuxt-link>
       <div class="menu-item" :class="{ 'witdh-auto': collapse }">
         <NuxtLink
           :to="localePath({path:'/HomePage/EmployeeList'})"
@@ -29,26 +29,18 @@
           <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.employee')}}</div>
         </NuxtLink>
       </div>
-      <div
+
+      <nuxt-link
+        :to="localePath({path:'/HomePage/Setting'})"
         class="menu-item"
-        :class="{ active: selectedItem == 5, 'witdh-auto': collapse }"
-        @click="selectItem(5)"
-      >
-        <div class="menu-item-icon">
-          <div class="mi mi-24 mi-sidebar-invoice" title="Quản lý hóa đơn"></div>
-        </div>
-        <div class="menu-item-title" :class="{ hide: collapse }">Quản lý hoá đơn</div>
-      </div>
-      <div
-        class="menu-item"
-        :class="{ active: selectedItem == 7, 'witdh-auto': collapse }"
-        @click="selectItem(7)"
+        :class="{ active: selectedItem == 2, 'witdh-auto': collapse }"
+        @click.native="selectItem(2)"
       >
         <div class="menu-item-icon">
           <div class="mi mi-24 mi-sidebar-tools" :title="$t('nav.setting')"></div>
         </div>
         <div class="menu-item-title" :class="{ hide: collapse }">{{$t('nav.setting')}}</div>
-      </div>
+      </nuxt-link>
     </div>
   </div>
 </template>

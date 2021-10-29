@@ -2,9 +2,9 @@
   <div>
     <div class="box">
       <div class="content-item">
-        <div class="content-item-text">Nhân viên</div>
+        <div class="content-item-text">{{$t('nav.employee')}}</div>
         <div class="component-btn">
-          <button class="btn-btn color" @click="btnAdd">Thêm mới nhân viên</button>
+          <button class="btn-btn color" @click="btnAdd">{{$t('btn.addEmployee')}}</button>
         </div>
       </div>
     </div>
@@ -15,7 +15,7 @@
           <input
             v-model="filter"
             type="text"
-            placeholder="Tìm theo mã, tên nhân viên"
+            :placeholder="$t('placeholder.filter')"
             class="input-search2 input"
             @input="onChangeInputEmployeeFilter"
           />
@@ -29,14 +29,14 @@
               <td class="table-input-checkbox fix-left">
                 <input type="checkbox" class="check-box" />
               </td>
-              <th style="min-width: 132px; border-left: none">MÃ NHÂN VIÊN</th>
-              <th style="min-width: 200px">TÊN NHÂN VIÊN</th>
-              <th>GIỚI TÍNH</th>
-              <th style="align-items: center; text-align: center">NGÀY SINH</th>
-              <th style="min-width: 200px">SỐ CMND</th>
-              <th style="min-width: 230px">CHỨC DANH</th>
+              <th style="min-width: 132px; border-left: none">{{$t('employee.employeeCode')}}</th>
+              <th style="min-width: 200px">{{$t('employee.employeeName')}}</th>
+              <th>{{$t('employee.gender')}}</th>
+              <th style="align-items: center; text-align: center">{{$t('employee.dateOfBirth')}}</th>
+              <th style="min-width: 200px">{{$t('employee.identifyNumber')}}</th>
+              <th style="min-width: 230px">{{$t('employee.employeePosition')}}</th>
 
-              <th class="table-right-style">CHỨC NĂNG</th>
+              <th class="table-right-style">{{$t('nav.feature')}}</th>
             </tr>
           </thead>
           <tbody>
@@ -69,30 +69,44 @@
                         @click="
                           btnEditClick(employee.id, employee.employeeCode)
                         "
-                      >Sửa</span>
+                      >{{$t('btn.edit')}}</span>
                     </div>
                   </button>
                 </div>
                 <div
                   class="btn-delete"
                   @click="btnDeleteClick(employee.id, employee.employeeCode)"
-                >Xóa</div>
+                >{{$t('btn.delete')}}</div>
               </div>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="content-navpage">
-        <div class="content-navpage-text-left">Tổng số: {{ totalRecord }} bản ghi</div>
-        <div class="footer-complete">
+        <div
+          class="content-navpage-text-left"
+        >{{$t('nav.total')}}: {{ totalRecord }} {{$t('nav.record')}}</div>
+        <div class="flex">
+			<div class="footer-complete">
           <select class="input" :value="pageSize" @change.prevent="onSelectedValue">
+            <option value="5">5 bản ghi trên 1 trang</option>
             <option value="10">10 bản ghi trên 1 trang</option>
-            <option value="20">20 bản ghi trên 1 trang</option>
             <option value="30">30 bản ghi trên 1 trang</option>
             <option value="50">50 bản ghi trên 1 trang</option>
             <option value="100">100 bản ghi trên 1 trang</option>
           </select>
         </div>
+        <div class="flex">
+          <div
+            class="btn-pre-page"
+            @click="changePage(-1)"
+          ></div>
+		  <div
+            class="btn-next-page"
+            @click="changePage(1)"
+          ></div>
+        </div>
+		</div>
       </div>
     </div>
     <!-- load icon -->
@@ -106,7 +120,12 @@
       @hideDialogNotLoad="hideDialogNotLoad"
       @hideDialog="hideDialog"
     />
-    <Popup :employee-click-code='recordCode' :employee-id="recordId" :hide-popup='popHide' @hidePopup='hidePopup' />
+    <Popup
+      :employee-click-code="recordCode"
+      :employee-id="recordId"
+      :hide-popup="popHide"
+      @hidePopup="hidePopup"
+    />
   </div>
 </template>
 <script>
@@ -171,7 +190,7 @@ export default {
 			popHide: true,
 			recordId: null, // Lưu giá trị của EmployeeId để truyền qua Popup
 			recordCode: null, // Lưu giá trị Employeecode truyền qua Popup
-			pageSize: 10,
+			pageSize: 5,
 			pageIndex: 1,
 			filter: '',
 			totalPages: 1
@@ -231,12 +250,16 @@ export default {
 					this.isBusy = false
 				})
 		},
+		changePage(page){
+			this.pageIndex += page;
+			this.filterData()
+		},
 		/**
 		 * click button refresh -> call load data
 		 * CreatedBy: DucLM (23/09/2021)
 		 */
 		btnRefreshClick() {
-			this.loadData()
+			this.filterData()
 		},
 		hidePopup() {
 			this.popHide = true
@@ -272,7 +295,7 @@ export default {
 		 */
 		hideDialog() {
 			this.hide = true
-			this.loadData()
+			this.filterData()
 		},
 		/**
 		 * btn edit click
@@ -679,5 +702,21 @@ th {
 }
 .active {
 	font-weight: 700;
+}
+.btn-pre-page{
+	background-image: url('../../assets/icon/btn-prev-page.svg');
+	height: 24px;
+	width: 24px;
+	background-position: center;
+	cursor: pointer;
+
+}
+.btn-next-page{
+	background-image: url('../../assets/icon/btn-next-page.svg');
+	height: 24px;
+	width: 24px;
+	background-position: center;
+	cursor: pointer;
+
 }
 </style>

@@ -15,6 +15,21 @@ export default {
         setting: 'Setting',
         dashboard: 'Dashboard',
         employee: 'Employees',
+        deleteEmployee: 'Do you want delete employee',
+        btnYes: 'Yes',
+        btnNo: 'No',
+        feature: 'Feature',
+        total: 'Total',
+        record: 'record',
+        wellcome: 'Welcome to VMO\'s employee management app'
+    },
+
+    btn:{
+        cancel:'Cancel',
+        save: 'Save',
+        delete: 'Delete',
+        edit: 'Edit',
+        addEmployee: 'Add Employee'
     },
 
     account: {
@@ -33,6 +48,7 @@ export default {
         enterCompanyName: 'Enter company name',
         enterUserName: 'Enter your username/email address',
         enterPassword: 'Enter your password',
+        filter: 'Find by code/name'
     },
 
     toast: {
@@ -42,5 +58,34 @@ export default {
         wrongPassword: 'Wrong password',
         required: 'Is required',
         noData: 'No data',
+        deleteSuccessful: 'Deleted ',
+        addSuccessful: 'Add Successful',
+        addFail: 'Add unsuccessful',
+        editSuccessful: 'Edit Successful',
+        editFail: 'Edit unsuccessful'
+    },
+
+    employee: {
+        infomationEmployee: 'Infomation Employee',
+        employeeCode: 'Code',
+        bankAccountNumber: 'Bank account number',
+        address: 'Address',
+        bankBranchName: 'Branch name',
+        bankName: 'Bank name',
+        dateOfBirth: 'Date of Birth',
+        department: 'Department',
+        email: 'Email',
+        employeeName: 'Name',
+        employeePosition: 'Position',
+        gender: 'Gender',
+        identifyDate: 'Identify date',
+        identifyNumber: 'Identify number',
+        identifyPlace: 'Identify place',
+        tel: 'Tel',
+        phoneNumber: 'PhoneNumber',
+        male: 'Male',
+        female: 'Female',
+        other: 'Other'
+
     },
 }
